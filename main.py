@@ -13,6 +13,7 @@ speed = [0, gravity]
 
 # variable for moving clouds
 x = 5
+y = -500
 
 game_active = True
 
@@ -21,6 +22,9 @@ game_active = True
 cloud_surface = pygame.image.load("assets/clouds.png")
 cloud_surface = pygame.transform.scale(cloud_surface, (850, 300))
 cloudrect = cloud_surface.get_rect()
+
+second_cloud_surface = pygame.image.load("assets/clouds.png")
+second_cloud_surface = pygame.transform.scale(cloud_surface, (850, 300))
 
 
 # define screen background
@@ -60,12 +64,18 @@ while 1:
 
 
     # controls game speed
-    clock.tick(60)
+    clock.tick(320)
 
     # displays everything on screen
     screen.blit(smaller_image, (0,0))
     x += .5
+    if x == 850:
+        x = -850
+    y += .5
+    if y == 850:
+        y = -850
     screen.blit(cloud_surface, (x, 0), cloudrect)
+    screen.blit(second_cloud_surface, (y, 0))
     screen.blit(ball, ballrect)
     pygame.display.update()
     pygame.display.flip()
