@@ -38,18 +38,30 @@ ball = pygame.transform.scale(ball, (100,100))
 ballrect = ball.get_rect()
 
 
+
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
+left_push = True
 
 # MAIN GAME LOOP
 while 1:
     for event in pygame.event.get():
+
         if event.type == pygame.QUIT: sys.exit()
 
         # User input controls
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                speed = [1, -3]
+                speed = [0, -3]
+            if event.key == pygame.K_LEFT and left_push:
+                left_push = False
+                ball = pygame.transform.flip(ball, True, False)
+            if event.key == pygame.K_LEFT:
+                speed = [-2, 0]
+
+
+
+
 
 
     ballrect = ballrect.move(speed)
@@ -64,7 +76,7 @@ while 1:
 
 
     # controls game speed
-    clock.tick(320)
+    clock.tick(60)
 
     # displays everything on screen
     screen.blit(smaller_image, (0,0))
