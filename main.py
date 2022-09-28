@@ -4,32 +4,45 @@ import pygame
 
 pygame.init()
 
+# screen size
 size = width, height = 640, 480
-gravity = 2
-speed = [0,gravity]
-black = 0, 0, 0
 
+# speed for bee
+gravity = 2
+speed = [0, gravity]
+
+# variable for moving clouds
+x = 5
+
+game_active = True
+
+
+# define clouds image
+cloud_surface = pygame.image.load("assets/clouds.png")
+cloud_surface = pygame.transform.scale(cloud_surface, (850, 300))
+cloudrect = cloud_surface.get_rect()
+
+
+# define screen background
 bg_surface = pygame.image.load("assets/gamebackground.jpg")
 smaller_image = pygame.transform.scale(bg_surface, (640,480))
 
 
-game_active = True
-ball_movement = 0
-
-screen = pygame.display.set_mode(size)
-
-
+# define bee image
 ball = pygame.image.load("assets/bee.png")
 ball = pygame.transform.scale(ball, (100,100))
 ballrect = ball.get_rect()
 
+
+screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
 
-
-
+# MAIN GAME LOOP
 while 1:
     for event in pygame.event.get():
         if event.type == pygame.QUIT: sys.exit()
+
+        # User input controls
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 speed = [1, -3]
@@ -37,6 +50,7 @@ while 1:
 
     ballrect = ballrect.move(speed)
 
+    # boundaries for bee image
     if ballrect.left < 0 or ballrect.right > width:
         speed[0] = -speed[0]
     if ballrect.top < 0:
@@ -44,13 +58,19 @@ while 1:
     if ballrect.bottom > height:
         speed = [0,0]
 
-    ballrect.centery += ball_movement
 
+    # controls game speed
     clock.tick(60)
-    screen.fill(black)
+
+    # displays everything on screen
     screen.blit(smaller_image, (0,0))
+    x += .5
+    screen.blit(cloud_surface, (x, 0), cloudrect)
     screen.blit(ball, ballrect)
+    pygame.display.update()
     pygame.display.flip()
+
+
 
 
 
