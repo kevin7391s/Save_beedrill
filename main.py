@@ -18,6 +18,11 @@ y = -500
 game_active = True
 
 
+
+# define bugspray image
+spray_surface = pygame.image.load("assets/bugspray.png")
+
+
 # define clouds image
 cloud_surface = pygame.image.load("assets/clouds.png")
 cloud_surface = pygame.transform.scale(cloud_surface, (850, 300))
@@ -56,7 +61,7 @@ while 1:
         # User input controls
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                speed = [0, -3]
+                speed = [1, -3]
             if event.key == pygame.K_LEFT and left_push:
                 left_push = False
                 right_push = True
@@ -69,6 +74,10 @@ while 1:
                 ball = pygame.transform.flip(ball, True, False)
             if event.key == pygame.K_RIGHT:
                 speed = [2, 0]
+            if event.key == pygame.K_DOWN:
+                speed = [0,2]
+            if event.key == pygame.K_UP:
+                speed = [0,-2]
 
 
 
