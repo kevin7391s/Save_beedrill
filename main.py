@@ -19,7 +19,9 @@ game_active = True
 
 
 
-# define bugspray image
+
+
+    # define bugspray image
 spray_surface = pygame.image.load("assets/bugspray.png")
 spray_surface = pygame.transform.scale(spray_surface, (320,400))
 sprayrect = spray_surface.get_rect()
@@ -84,6 +86,9 @@ while 1:
                 speed = [0,2]
             if event.key == pygame.K_UP:
                 speed = [0,-2]
+            if event.key == pygame.K_s:
+                speed = [0,-10]
+
 
 
 
