@@ -41,7 +41,11 @@ ballrect = ball.get_rect()
 
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
+
+
 left_push = True
+right_push = True
+
 
 # MAIN GAME LOOP
 while 1:
@@ -55,12 +59,16 @@ while 1:
                 speed = [0, -3]
             if event.key == pygame.K_LEFT and left_push:
                 left_push = False
+                right_push = True
                 ball = pygame.transform.flip(ball, True, False)
             if event.key == pygame.K_LEFT:
                 speed = [-2, 0]
-
-
-
+            if event.key == pygame.K_RIGHT and right_push and not left_push:
+                right_push = False
+                left_push = True
+                ball = pygame.transform.flip(ball, True, False)
+            if event.key == pygame.K_RIGHT:
+                speed = [2, 0]
 
 
 
