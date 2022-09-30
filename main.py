@@ -21,6 +21,12 @@ game_active = True
 
 # define bugspray image
 spray_surface = pygame.image.load("assets/bugspray.png")
+spray_surface = pygame.transform.scale(spray_surface, (320,400))
+sprayrect = spray_surface.get_rect()
+
+second_spray_surface = pygame.image.load("assets/bugspray.png")
+second_spray_surface = pygame.transform.scale(second_spray_surface, (320,400))
+second_sprayrect = second_spray_surface.get_rect()
 
 
 # define clouds image
@@ -103,9 +109,12 @@ while 1:
     y += .5
     if y == 850:
         y = -850
+
     screen.blit(cloud_surface, (x, 0), cloudrect)
     screen.blit(second_cloud_surface, (y, 0))
     screen.blit(ball, ballrect)
+    screen.blit(spray_surface, (-x, 180), sprayrect)
+    screen.blit(second_spray_surface, (-x + 300, 180), second_sprayrect)
     pygame.display.update()
     pygame.display.flip()
 
