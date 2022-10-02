@@ -86,8 +86,7 @@ while 1:
                 speed = [0,2]
             if event.key == pygame.K_UP:
                 speed = [0,-2]
-            if event.key == pygame.K_s:
-                speed = [0,-10]
+            
 
 
 
