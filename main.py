@@ -52,23 +52,9 @@ while 1:
 
         if event.type == pygame.QUIT: sys.exit()
 
-        # User input controls
+       # Keydown events
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
-                # gravity -= 30
-                if 0 < bee_rect.x > 0:
-                    seconds = 0
-                    seconds /= 5
-                    speed = [speed_value, -6]
-                    speed_value /= 2
-                else:
-                    speed_value = 0
-
-                    seconds = 0
-                    seconds /= 5
-                    speed = [0, -6]
-
-
+            # Flip Bee Controls
             if event.key == pygame.K_LEFT and left_push:
                 left_push = False
                 right_push = True
@@ -78,6 +64,22 @@ while 1:
                 left_push = True
                 bee_surf = pygame.transform.flip(bee_surf, True, False)
 
+            # USER INPUT CONTROLS
+            if event.key == pygame.K_SPACE:
+                # gravity -= 30
+                if 0 < bee_rect.x > 0:
+                    seconds = 0
+                    seconds /= 5
+                    speed = [speed_value, -6]
+                    speed_value /= 2
+                else:
+                    speed_value = 0
+                    seconds = 0
+                    seconds /= 5
+                    speed = [0, -6]
+
+            # set speed value so gravity flows with direction of bee
+            # for LEFT CLICK and RIGHT CLICK
             if event.key == pygame.K_LEFT:
                 speed_value = -4
                 seconds = 0
@@ -90,6 +92,7 @@ while 1:
                 seconds /= 5
                 speed = [3, 0 + gravity]
 
+
             if event.key == pygame.K_DOWN:
                 #gravity += 20
                 speed_value = 0
@@ -97,14 +100,12 @@ while 1:
 
             if event.key == pygame.K_UP:
                 if 0 < bee_rect.x > 0:
-                    gravity = 0
                     seconds = 0
-                    seconds /= 5
+                    
                     speed = [speed_value, -6]
                     speed_value /= 2
                 else:
                     speed_value = 0
-                    gravity = 0
                     seconds = 0
                     seconds /= 5
                     speed = [0, -6]
@@ -114,8 +115,8 @@ while 1:
 
     height_value = bee_rect.y
 
-
     # apply gravity to bee
+    # increment seconds so when no user input in pressed bee falls to ground
     seconds += 1
     gravity = 2 * seconds /50
     gravity = round(gravity)
@@ -123,9 +124,9 @@ while 1:
         speed = [0, gravity]
     if seconds > 50 and 0 < bee_rect.x > 0:
         speed = [speed_value, gravity]
+
     print(bee_rect.x)
-
-
+    print(bee_rect.y)
 
     #bee_rect.y = gravity
     #if bee_rect.bottom >= height:
