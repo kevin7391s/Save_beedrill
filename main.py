@@ -52,7 +52,7 @@ while 1:
         # User input controls
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                gravity -= 3
+                gravity -= 30
                 speed = [1, gravity]
             if event.key == pygame.K_LEFT and left_push:
                 left_push = False
@@ -67,16 +67,14 @@ while 1:
             if event.key == pygame.K_RIGHT:
                 speed = [2, gravity]
             if event.key == pygame.K_DOWN:
-                gravity += 2
-                speed = [0, gravity]
+                gravity += 20
             if event.key == pygame.K_UP:
-                gravity -= 2
-                speed = [0, gravity]
+                gravity -= 20
 
     bee_rect = bee_rect.move(speed)
 
     # apply gravity to bee
-    gravity +=1
+    gravity +=5
     bee_rect.y = gravity
     if bee_rect.bottom >= height: bee_rect.bottom = height
 
