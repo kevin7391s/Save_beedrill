@@ -8,7 +8,7 @@ pygame.init()
 size = width, height = 640, 480
 
 # speed for bee
-gravity = 2
+gravity = 3
 speed = [0, gravity]
 
 # variable for moving clouds
